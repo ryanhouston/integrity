@@ -21,5 +21,11 @@ module Integrity
     timestamps :at
 
     belongs_to :build
+
+    def github_url
+      base_url = build.repo.github_url
+      base_url.join("commit/#{identifier}")
+    end
+
   end
 end

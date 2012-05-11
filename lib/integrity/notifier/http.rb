@@ -29,7 +29,8 @@ module Integrity
            "branch"  => build.project.branch,
            "commit"  => build.commit.identifier,
            "author"  => build.commit.author.name,
-           "message" => build.commit.message}
+           "message" => build.commit.message,
+           "github_url" => build.commit.github_url}
         )
       end
     end

@@ -123,6 +123,15 @@ module Integrity
       :build => Build.gen_attrs.update(:successful => false) }
   end
 
+  Commit.fixture(:integrity) do
+    { :identifier => Digest::SHA1.hexdigest('hack-the-planet'),
+      :message    => /[:sentence:]/.gen,
+      :author     => /\w+ \w+ <\w+@example.org>/.gen,
+      :committed_at =>
+        unique(:commit_committed_at_failed) {|i| Time.mktime(2008, 12, 15, 18, (59 - i) % 60)},
+      :build => Build.gen_attrs.update(:project => Project.gen(:integrity)) }
+  end
+
   Notifier.fixture(:irc) do
     { :project => Project.gen,
       :name => "IRC",

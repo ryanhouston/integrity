@@ -2,14 +2,26 @@ require "helper"
 
 class RepositoryTest < IntegrityTest
   setup do
-    @repo = Repository.new('git://notgithub.com/integrity/integrity.git', 'master')
+    @repo = Repository.new('git://github.com/joebloe/integrity.git', 'hack-the-planet')
   end
 
   it "has a uri" do
-    assert_equal 'git://notgithub.com/integrity/integrity.git', @repo.uri
+    assert_equal 'git://github.com/joebloe/integrity.git', @repo.uri
   end
 
   it "has a branch" do
-    assert_equal 'master', @repo.branch
+    assert_equal 'hack-the-planet', @repo.branch
+  end
+
+  it "finds a github account name" do
+    assert_equal 'joebloe', @repo.account
+  end
+
+  it "finds a github repo name" do
+    assert_equal 'integrity', @repo.name
+  end
+
+  it "has a github url" do
+    assert_equal 'http://github.com/joebloe/integrity/', @repo.github_url.to_s
   end
 end
