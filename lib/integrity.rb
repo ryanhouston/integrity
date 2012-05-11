@@ -21,6 +21,7 @@ require "bcat/ansi"
 
 require "integrity/configuration"
 require "integrity/bootstrapper"
+require "integrity/repository"
 require "integrity/project"
 require "integrity/project_finder"
 require "integrity/author"
@@ -44,8 +45,6 @@ module Integrity
   autoload :ThreadedBuilder, "integrity/threaded_builder"
   autoload :DelayedBuilder,  "integrity/delayed_builder"
   autoload :ResqueBuilder,   "integrity/resque_builder"
-
-  Repository = Struct.new(:uri, :branch)
 
   def self.config
     @config ||= Configuration.new
