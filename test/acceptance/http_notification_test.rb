@@ -35,6 +35,6 @@ class HTTPNotificationTest < Test::Unit::AcceptanceTestCase
 
   scenario "Notifying a build" do
     head = build(0)
-    assert_requested :post, "http://example.com/", :body => 'balls'
+    assert_requested :post, "http://example.com/"
   end
 end

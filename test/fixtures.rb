@@ -25,6 +25,14 @@ module Integrity
       :public  => true }
   end
 
+  Project.fixture(:github_url) do
+  { :name => "Usable github commit urls",
+    :uri    => "git://github.com/foca/integrity.git",
+    :branch => "master",
+    :command => "rake",
+    :public   => true }
+  end
+
   Project.fixture(:my_test_project) do
     { :name    => "My Test Project",
       :uri     => File.dirname(__FILE__) + "/../../",
@@ -123,13 +131,10 @@ module Integrity
       :build => Build.gen_attrs.update(:successful => false) }
   end
 
-  Commit.fixture(:integrity) do
+  Commit.fixture(:hack_the_planet) do
     { :identifier => Digest::SHA1.hexdigest('hack-the-planet'),
       :message    => /[:sentence:]/.gen,
-      :author     => /\w+ \w+ <\w+@example.org>/.gen,
-      :committed_at =>
-        unique(:commit_committed_at_failed) {|i| Time.mktime(2008, 12, 15, 18, (59 - i) % 60)},
-      :build => Build.gen_attrs.update(:project => Project.gen(:integrity)) }
+      :author     => /\w+ \w+ <\w+@example.org>/.gen }
   end
 
   Notifier.fixture(:irc) do
