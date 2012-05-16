@@ -3,7 +3,8 @@ require "helper"
 class CommitTest < IntegrityTest
   setup do
     @project = Project.gen(:github_url)
-    @project.builds.create(:commit => Commit.gen(:hack_the_planet))
+    @project.builds.create(
+      :commit => Commit.gen_attrs.update(:identifier => Digest::SHA1.hexdigest('hack-the-planet')))
   end
 
   it "should return a github url to view the commit" do

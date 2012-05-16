@@ -131,12 +131,6 @@ module Integrity
       :build => Build.gen_attrs.update(:successful => false) }
   end
 
-  Commit.fixture(:hack_the_planet) do
-    { :identifier => Digest::SHA1.hexdigest('hack-the-planet'),
-      :message    => /[:sentence:]/.gen,
-      :author     => /\w+ \w+ <\w+@example.org>/.gen }
-  end
-
   Notifier.fixture(:irc) do
     { :project => Project.gen,
       :name => "IRC",
