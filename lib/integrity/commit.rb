@@ -23,8 +23,10 @@ module Integrity
     belongs_to :build
 
     def github_url
-      base_url = build.repo.github_url
-      base_url.join("commit/#{identifier}")
+      if build.repo.github_uri?
+        base_url = build.repo.github_url
+        base_url.join("commit/#{identifier}")
+      end
     end
 
   end

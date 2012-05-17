@@ -5,7 +5,7 @@ class RepositoryTest < IntegrityTest
     @repo = Repository.new('git://github.com/joebloe/integrity.git', 'hack-the-planet')
   end
 
-  it "has a uri" do
+  it "should allow a github uri" do
     assert_equal 'git://github.com/joebloe/integrity.git', @repo.uri
   end
 
@@ -24,4 +24,10 @@ class RepositoryTest < IntegrityTest
   it "has a github url" do
     assert_equal 'http://github.com/joebloe/integrity/', @repo.github_url.to_s
   end
+
+  it "should allow a non-github uri" do
+    repo = Repository.new('../../tmp/my_test_project/', 'master')
+    assert_equal '../../tmp/my_test_project/', repo.uri
+  end
+
 end
