@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.expand_path(File.dirname(".")))
 require "rake/testtask"
 require "rake/clean"
+require 'rspec/core/rake_task'
 
 desc "Default: run all tests"
 task :default => :test
@@ -20,6 +21,9 @@ namespace :test do
     t.test_files = FileList["test/acceptance/*_test.rb"]
   end
 end
+
+desc "Run all RSpec tests"
+RSpec::Core::RakeTask.new(:spec)
 
 desc "Create the database"
 task :db do
