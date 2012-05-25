@@ -43,5 +43,23 @@ module Integrity
         its(:human_status) { should eq "<commit> is building" }
       end
     end
+
+    describe "#sha1" do
+      subject { Build.new }
+
+      context "when build has no commit" do
+        its(:sha1) { should eq "(commit is missing)" }
+      end
+
+      it "retuns the commit identifer when the build has a commit" do
+        subject.commit = Commit.create(
+          :identifier   => '123abc',
+          :author       => 'Jon Doe <jon@doe.com>',
+          :message      => 'A commit for a build'
+        )
+
+        subject.sha1.should eq '123abc'
+      end
+    end
   end
 end
